@@ -52,7 +52,7 @@ async def status(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(f"📍 Current Positions:\n{board}")
 
 # Bot setup
-app = ApplicationBuilder().token("YOUR_BOT_TOKEN").build()
+app = ApplicationBuilder().token("8037587323:AAHSp9yOOCEVL6bw2dpZtEiQ1Bjlxe-vMuo").build()
 app.add_handler(CommandHandler("join", join))
 app.add_handler(CommandHandler("startgame", startgame))
 app.add_handler(CommandHandler("roll", roll))
