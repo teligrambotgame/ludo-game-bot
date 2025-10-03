@@ -1,33 +1,22 @@
-import logging
 from telegram import Update
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-# Logging enable karte hain
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    level=logging.INFO
-)
+BOT_TOKEN = "8037587323:AAHSp9yOOCEVL6bw2dpZtEiQ1Bjlxe-vMuo"
 
-# Start command function
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("🎲 Welcome to Ludo Game Bot! \nType /play to start playing.")
+    await update.message.reply_text(
+        "Hello! Welcome to Ludo Game. Type /play to start the game."
+    )
 
-# Play command function
 async def play(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Game Start hone wala hai... (Abhi basic test mode me hai)")
+    await update.message.reply_text(
+        "Ludo game logic will start here. 🎲"
+    )
 
-# Main function
-def main():
-    # Yahan apna bot token daalo (BotFather se jo mila hai)
-    TOKEN = "8037587323:AAHSp9yOOCEVL6bw2dpZtEiQ1Bjlxe-vMuo"
+app = ApplicationBuilder().token(BOT_TOKEN).build()
 
-    app = Application.builder().token(TOKEN).build()
+app.add_handler(CommandHandler("start", start))
+app.add_handler(CommandHandler("play", play))
 
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CommandHandler("play", play))
-
-    print("Bot started...")
-    app.run_polling()
-
-if __name__ == "__main__":
-    main()
+print("Bot is running...")
+app.run_polling()
